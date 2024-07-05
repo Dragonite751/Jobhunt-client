@@ -10,7 +10,7 @@ const Navbar = () => {
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  const rol=localStorage.getItem("role");
   console.log(role);
   return (
     <nav className="bg-blue-600 text-white shadow-md flex justify-between items-center px-8 relative w-full py-6">
@@ -37,7 +37,7 @@ const Navbar = () => {
           <li className="nav-item">
             <a className="nav-link text-lg font-semibold text-white hover:text-gray-300 transition duration-300" href="/offc">Off Campus</a>
           </li>
-          {role==="tnp" &&
+          {rol==="tnp" &&
             <li className="nav-item">
             <a className="nav-link text-lg font-semibold text-white hover:text-gray-300 transition duration-300" href="/compost">Company post</a>
           </li>

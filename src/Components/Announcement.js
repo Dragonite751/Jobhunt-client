@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../context/authContext';
 const theme = createTheme({
   typography: {
     fontFamily: 'Roboto, sans-serif',
@@ -17,7 +17,8 @@ const formatDate = (timestamp) => {
   return date.toISOString().replace('Z', '.000');
 };
 const AnnouncementCard = ({ anns, user, onPostCompleted }) => {
-  const authToken = localStorage.getItem('authToken');
+  const { authToken } = useAuth();
+ 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const Navigate = useNavigate();
@@ -25,9 +26,9 @@ const AnnouncementCard = ({ anns, user, onPostCompleted }) => {
   const handlePost = async (id) => {
     setLoading(true);
     setError(null);
-
+    if(authToken){
     try {
-      const response = await fetch(`http://localhost:3001/stu/comApply/${id}`, {
+      const response = await fetch(process.env.REACT_APP_API_URL+`stu/comApply/${id}`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -46,7 +47,7 @@ const AnnouncementCard = ({ anns, user, onPostCompleted }) => {
     } catch (error) {
       setError(error.message);
       setLoading(false);
-    }
+    }}
   };
 
   if (loading) {

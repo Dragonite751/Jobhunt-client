@@ -66,7 +66,7 @@ const AddInfoForm = () => {
     setServerError(null);
     const authToken = localStorage.getItem('authToken');
     try {
-      const response = await fetch("http://localhost:3001/stu/addInfo", {
+      const response = await fetch(process.env.REACT_APP_API_URL +"stu/addInfo", {
         method: 'POST',
         body: JSON.stringify({
           job_type: data.job_title,

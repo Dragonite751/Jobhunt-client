@@ -9,7 +9,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [authToken, setAuthToken] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [role, setRole] = useState("student")
+  const [role, setRole] = useState("");
   const navigate=useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("authToken");

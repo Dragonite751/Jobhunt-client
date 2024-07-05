@@ -2,7 +2,7 @@ import React from 'react'
 import  { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
-import { Button, Checkbox, FormControlLabel, Typography, Card, CardContent, Container } from '@mui/material';
+import {  Typography, Card, CardContent} from '@mui/material';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 // Footer
@@ -35,6 +35,20 @@ const Shortlist = () => {
         };
         fetchStudents();
       }, [id, authToken]);
+
+      if (loading) {
+        return (
+          <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <CircularProgress />
+            <p className="mt-2">Loading...</p>
+          </div>
+        );
+      }
+    
+      if (error) {
+        return <div className="text-red-500 text-center mt-4">Error: {error}</div>;
+      }
+    
   return (
     
     <div>

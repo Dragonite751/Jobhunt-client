@@ -6,7 +6,6 @@ import { AuthProvider, useAuth } from '../context/authContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const {role,setRole}=useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [serverError, setServerError] = useState(null);
   const onSubmit = async (data) => {
@@ -33,7 +32,8 @@ const Login = () => {
         document.cookie = "authCookie=" + resp.token;
         localStorage.setItem("authToken", resp.token);
         console.log(resp.student.firstLogin);
-        setRole(resp.student.role);
+      
+        localStorage.setItem("role", resp.student.role);
         console.log('====================================');
         console.log(resp.student.role);
         console.log('====================================');
